@@ -34,6 +34,11 @@ const NavBar = (props) => {
               shopping cart
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/login">
+              Login 
+            </NavLink>
+          </li>
         </ul>
       </div>
         <NavLink to={"/cart"} className="badge bg-danger badge-rounded p-3 badge-primary ml-auto ">{props.dishs.filter((dish) => dish.isSelected).length || 0}</NavLink>
