@@ -1,7 +1,6 @@
 import React from "react";
 
 const Cart = (props) => {
-  console.log(props.dishs);
   return (
     <div>
       <h1 className="p-2  text-center w-100 ">Cart</h1>
