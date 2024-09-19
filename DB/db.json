@@ -1,0 +1,9 @@
+{
+    "dishs":[{ "id": 1, "name": "pizza", "price": 10, "quantity": 0, "isSelected": false },
+    { "id": 2, "name": "Apple", "price": 20, "quantity": 0, "isSelected": false },
+    { "id": 3, "name": "burger", "price": 30, "quantity": 0, "isSelected": false },
+    { "id": 4, "name": "sushi", "price": 40, "quantity": 0, "isSelected": false },
+    { "id": 5, "name": "chicken", "price": 50, "quantity": 0, "isSelected": false },
+    { "id": 6, "name": "fish", "price": 60, "quantity": 0, "isSelected": false }
+    ]
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import RootLayOut from "./layOuts/RootLayOut";
 
 import {
@@ -16,15 +16,21 @@ import Menu from "./pages/Menu";
 import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
+import Posts from "./pages/Posts";
+
 function App() {
-  const [dishs, setDishs] = useState([
-    { id: 1, name: "pizza", price: 10, quantity: 0, isSelected: false },
-    { id: 2, name: "pasta", price: 20, quantity: 0, isSelected: false },
-    { id: 3, name: "burger", price: 30, quantity: 0, isSelected: false },
-    { id: 4, name: "sushi", price: 40, quantity: 0, isSelected: false },
-    { id: 5, name: "chicken", price: 50, quantity: 0, isSelected: false },
-    { id: 6, name: "fish", price: 60, quantity: 0, isSelected: false },
-  ]);
+  const [dishs, setDishs] = useState([]);
+
+  const getDishes = async () => {
+    const response = await fetch("http://localhost:3000/dishs");
+    const data = await response.json();
+    setDishs(data);
+  };
+
+  useEffect(() => {
+    getDishes();
+  }, []);
+
   const addToCart = (id) => {
     setDishs(
       dishs.map((dish) => {
@@ -51,6 +57,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="menu" element={<Menu dishs={dishs} onAdd={addToCart} />} />
         <Route path="cart" element={<Cart dishs={dishs} onAdd={plusCount} />} />
+        <Route path="posts" element={<Posts />} />
         <Route path="login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Route>
