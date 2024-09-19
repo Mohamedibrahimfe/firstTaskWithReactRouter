@@ -17,6 +17,7 @@ const [posts, setPosts] = useState([]);
 
     return (
         <div>
+            <a className='text-dark text-decoration-none bg-warning float-end p-3 rounded' href='/post'>Get Post by id</a>
             <h1>{ posts.map((post) => {
                 return (
                     <div className='w-100 p-2 m-2 shadow' key={post.id}>
