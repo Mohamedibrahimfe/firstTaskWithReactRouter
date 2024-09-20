@@ -18,7 +18,8 @@ import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Posts from "./pages/Posts";
 import Post from "./pages/Post";
-
+import Admin from "./pages/Admin";
+import Add from "./pages/Add";
 function App() {
   const [dishs, setDishs] = useState([]);
 
@@ -60,7 +61,10 @@ function App() {
         <Route path="cart" element={<Cart dishs={dishs} onAdd={plusCount} />} />
         <Route path="posts" element={<Posts />} />
         <Route path="post" element={<Post />} />
+        <Route path="admin" element={<Admin dishs={dishs} />} />
+        <Route path="add" element={<Add />} />
         <Route path="login" element={<Login />} />
+
         <Route path="*" element={<NotFound />} />
       </Route>
     )

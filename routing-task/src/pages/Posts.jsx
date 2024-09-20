@@ -2,12 +2,12 @@ import React from 'react';
 import axios from 'axios';
 
 import { useState,useEffect } from 'react';
+import { Link } from 'react-router-dom';
 const Posts = () => {
 const [posts, setPosts] = useState([]);
 
     const getPosts = async () => {
         const response = await axios.get("https://jsonplaceholder.typicode.com/posts");
-        console.log(response.data);
         // return
         setPosts(response.data);
     };
@@ -17,7 +17,7 @@ const [posts, setPosts] = useState([]);
 
     return (
         <div>
-            <a className='text-dark text-decoration-none bg-warning float-end p-3 rounded' href='/post'>Get Post by id</a>
+            <Link className='text-dark text-decoration-none bg-warning float-end p-3 rounded' to='/post'>Get Post by id</Link>
             <h1>{ posts.map((post) => {
                 return (
                     <div className='w-100 p-2 m-2 shadow' key={post.id}>
