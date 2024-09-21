@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 const Admin = (props) => {
+  console.log(props);
+  
     return ( <> 
         <>
     <Link to="/add" className="btn btn-primary p-2 my-2">Add an item to menu</Link>
@@ -22,15 +24,15 @@ const Admin = (props) => {
                 <td>
 
                   <button
-                    onClick={() => props.onAdd(dish.id)}
+                    onClick={() => props.onEdit(dish.id)}
                     className="btn"
                   >
-                    <i className={dish.isSelected ? "bi bi-bag-plus bg-dark text-white p-2 " : "bi bi-bag-plus p-2"}></i>
+                    <Link to={`/edit/${dish.id}`}><i className={dish.isSelected ? "bi bi-pencil-fill bg-dark text-white p-2 " : "bi bi-pencil-fill p-2"}></i></Link>
                   </button>  
                 </td>
                 <td>
                 <button
-                    onClick={() => props.onAdd(dish.id)}
+                    onClick={() => props.onDelete(dish.id)}
                     className="btn"
                   >
                     <i className={dish.isSelected ? "bi bi-trash bg-dark text-white p-2 " : "bi bi-trash p-2"}></i>

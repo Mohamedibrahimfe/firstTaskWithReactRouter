@@ -1,9 +1,22 @@
 import axios from "axios"
-import { useState } from "react"
-const Add =(props)=>{
-const [form, setForm] = useState(
-    {name:"",price:0}
-)
+import { useEffect, useState } from "react"
+const Edit = (props) => {
+    const [form, setForm] = useState(
+        
+    )
+    const getData=(id) => {
+        axios
+          .get(`http://localhost:3001/dishs/${id}`)
+          .then((res) => {
+            setForm(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+    }
+    useEffect(() => {
+        getData(props.match.params.id)
+    })
     const handleSubmitAdd = async(e)=>{
         e.preventDefault();
         const obj = {
@@ -15,12 +28,12 @@ const [form, setForm] = useState(
        await axios.post("http://localhost:3001/dishs", obj);
     //    props.history.replace("/admin")
     }
-    return(
-        <>
+    return ( <>
         <form>
             <div className="form-group">
+                <h1>Edit Item : </h1>
                 <label htmlFor="Name">Item Name</label>
-                <input value={form.name} onChange={(e) => setForm({...form, name: e.target.value})} type="text" className="form-control" id="Name" aria-describedby="emailHelp" />
+                <input  onChange={(e) => setForm({...form, name: e.target.value})} type="text" className="form-control" id="Name" aria-describedby="emailHelp" />
                 <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="form-group">
@@ -30,8 +43,7 @@ const [form, setForm] = useState(
             <button onSubmit={handleSubmitAdd} type="submit" className="btn btn-primary my-2">Add</button>
         </form>
         
-        </>
-    )
+    </> );
 }
-
-export default Add;
+ 
+export default Edit;

@@ -20,6 +20,7 @@ import Posts from "./pages/Posts";
 import Post from "./pages/Post";
 import Admin from "./pages/Admin";
 import Add from "./pages/Add";
+import Edit from "./pages/Edit";
 function App() {
   const [dishs, setDishs] = useState([]);
 
@@ -53,6 +54,14 @@ function App() {
       })
     );
   };
+  const onEdit = (id) => {
+    // redirect to /edit/:id
+
+    console.log(id);
+  };
+  const onDelete = (id) => {
+    setDishs(dishs.filter((dish) => dish.id !== id));
+  };
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayOut dishs={dishs} />}>
@@ -61,8 +70,19 @@ function App() {
         <Route path="cart" element={<Cart dishs={dishs} onAdd={plusCount} />} />
         <Route path="posts" element={<Posts />} />
         <Route path="post" element={<Post />} />
-        <Route path="admin" element={<Admin dishs={dishs} />} />
-        <Route path="add" element={<Add />} />
+        <Route
+          path="admin"
+          element={
+            <Admin
+              dishs={dishs}
+              onAdd={addToCart}
+              onEdit={onEdit}
+              onDelete={onDelete}
+            />
+          }
+        />
+        <Route path="add" element={<Add dishs={dishs} />} />
+        <Route path="edit/:id" element={<Edit dishs={dishs} />} />
         <Route path="login" element={<Login />} />
 
         <Route path="*" element={<NotFound />} />
