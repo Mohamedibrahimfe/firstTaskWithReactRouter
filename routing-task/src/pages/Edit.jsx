@@ -2,21 +2,18 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 const Edit = (props) => {
     const [form, setForm] = useState(
-        
+        {name:"",price:0}
     )
-    const getData=(id) => {
-        axios
-          .get(`http://localhost:3001/dishs/${id}`)
-          .then((res) => {
-            setForm(res.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+    const getData=() => {
+        const id=props.match.params.id
+        axios.get(`http://localhost:3001/dishs/${id}`)
+        .then((res)=>{
+            setForm(res.data)
+        })
     }
     useEffect(() => {
-        getData(props.match.params.id)
-    })
+        getData()
+    }, [])
     const handleSubmitAdd = async(e)=>{
         e.preventDefault();
         const obj = {
@@ -33,7 +30,7 @@ const Edit = (props) => {
             <div className="form-group">
                 <h1>Edit Item : </h1>
                 <label htmlFor="Name">Item Name</label>
-                <input  onChange={(e) => setForm({...form, name: e.target.value})} type="text" className="form-control" id="Name" aria-describedby="emailHelp" />
+                <input value={form.name} onChange={(e) => setForm({...form, name: e.target.value})} type="text" className="form-control" id="Name" aria-describedby="emailHelp" />
                 <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="form-group">
