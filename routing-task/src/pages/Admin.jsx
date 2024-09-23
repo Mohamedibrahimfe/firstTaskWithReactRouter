@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 const Admin = (props) => {
-  console.log(props);
-  
+
+
     return ( <> 
         <>
     <Link to="/add" className="btn btn-primary p-2 my-2">Add an item to menu</Link>
@@ -32,7 +32,7 @@ const Admin = (props) => {
                 </td>
                 <td>
                 <button
-                    onClick={() => props.onDelete(dish.id)}
+                    onClick={()=>props.onDelete(dish)}
                     className="btn"
                   >
                     <i className={dish.isSelected ? "bi bi-trash bg-dark text-white p-2 " : "bi bi-trash p-2"}></i>

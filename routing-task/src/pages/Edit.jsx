@@ -6,7 +6,7 @@ const Edit = (props) => {
     )
     const getData=() => {
         const id=props.match.params.id
-        axios.get(`http://localhost:3001/dishs/${id}`)
+        axios.get(`http://localhost:3000/dishs/${id}`)
         .then((res)=>{
             setForm(res.data)
         })
@@ -22,7 +22,7 @@ const Edit = (props) => {
             quantity: 0,
             isSelected: false
         }
-       await axios.post("http://localhost:3001/dishs", obj);
+       await axios.post("http://localhost:3000/dishs", obj);
     //    props.history.replace("/admin")
     }
     return ( <>

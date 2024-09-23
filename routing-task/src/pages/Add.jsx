@@ -1,20 +1,11 @@
-import axios from "axios"
 import { useState } from "react"
 const Add =(props)=>{
 const [form, setForm] = useState(
-    {name:"",price:0}
+    {id:"",name:"",price:0,quantity:0,isSelected:false}
 )
-    const handleSubmitAdd = async(e)=>{
-        e.preventDefault();
-        const obj = {
-            id: Date.now(),
-            ...form,
-            quantity: 0,
-            isSelected: false
-        }
-       await axios.post("http://localhost:3001/dishs", obj);
-    //    props.history.replace("/admin")
-    }
+
+
+
     return(
         <>
         <form>
@@ -27,7 +18,7 @@ const [form, setForm] = useState(
                 <label htmlFor="price">Item Price</label>
                 <input value={form.price} onChange={(e) => setForm({...form, price: e.target.value})} type="number" className="form-control" id="price" />
             </div>
-            <button onSubmit={handleSubmitAdd} type="submit" className="btn btn-primary my-2">Add</button>
+            <button onSubmit={() => props.addDish(form)} type="submit" className="btn btn-primary my-2">Add</button>
         </form>
         
         </>

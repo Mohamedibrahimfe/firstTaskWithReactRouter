@@ -21,6 +21,7 @@ import Post from "./pages/Post";
 import Admin from "./pages/Admin";
 import Add from "./pages/Add";
 import Edit from "./pages/Edit";
+import axios from "axios";
 function App() {
   const [dishs, setDishs] = useState([]);
 
@@ -59,9 +60,17 @@ function App() {
 
     console.log(id);
   };
-  const onDelete = (id) => {
-    setDishs(dishs.filter((dish) => dish.id !== id));
+  const onDelete = async (myDish) => {
+    console.log(myDish.id);
+    setDishs(dishs.filter((dish) => dish.id !== myDish.id));
+    await axios.delete(`http://localhost:3000/dishs/${myDish.id}`);
   };
+
+  const addDish = async (myDish) => {
+    setDishs([...dishs, myDish]);
+    await axios.post("http://localhost:3000/dishs", myDish);
+  };
+  useEffect(() => {});
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayOut dishs={dishs} />}>
@@ -78,6 +87,7 @@ function App() {
               onAdd={addToCart}
               onEdit={onEdit}
               onDelete={onDelete}
+              addDish={addDish}
             />
           }
         />
